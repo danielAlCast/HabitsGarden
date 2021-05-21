@@ -14,10 +14,12 @@
         android:background="@color/green20"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:collapseIcon="@drawable/hojahum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/action_bar_menu" />
+        app:menu="@menu/action_bar_menu"
+        app:navigationIcon="@drawable/ic_action_pomodoroimages" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
