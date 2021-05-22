@@ -35,6 +35,7 @@ public class PomodoroActi extends AppCompatActivity {
         countdownText = findViewById(R.id.countdown_text);
         countdownBtn= findViewById(R.id.buttonComenzarPomodoro);
         progressBar=findViewById(R.id.progressBar);
+        progressBar.setProgress(100);
     }
 
     public void ComenzarPomodoro(View view) {
@@ -69,7 +70,7 @@ public class PomodoroActi extends AppCompatActivity {
                 updateTimer();
                 updateProgressBar();
                 Log.println(Log.ASSERT,"TIEMPO","FALTA"+l);
-                if(l<=800 && relaxTime==false){
+                if(l<=800 && !relaxTime){
                     countdownText.setText("1:00");
                     relaxTime=true;
                     timeLeftinMs=60000;
