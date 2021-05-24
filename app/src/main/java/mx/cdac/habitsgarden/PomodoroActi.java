@@ -2,22 +2,29 @@ package mx.cdac.habitsgarden;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PomodoroActi extends AppCompatActivity {
 
-
-    private TextView countdownTime;
+    private TextView countdownText;
     private Button countdownBtn;
+    private ProgressBar progressBar;
 
-    //private CountDownTimer countDownTimer;
-    //private long timeLeftinMs=1500000;//25 minutos
-    //private boolean timeRunning;
+
+    private CountDownTimer countDownTimer;
+    private long timeLeftinMs=60000;//25 minutos
+    private boolean timeRunning;
+    private long time=timeLeftinMs;
+
+
+    private boolean relaxTime=false;
 
 
 
@@ -25,6 +32,10 @@ public class PomodoroActi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pomodoro);
+        countdownText = findViewById(R.id.countdown_text);
+        countdownBtn= findViewById(R.id.buttonComenzarPomodoro);
+        progressBar=findViewById(R.id.progressBar);
+        progressBar.setProgress(100);
     }
 
     public void ComenzarPomodoro(View view) {
@@ -40,10 +51,68 @@ public class PomodoroActi extends AppCompatActivity {
         Log.println(Log.ASSERT,"MESSAGE","Pos le diste click al pomodoro");
 
         // mostrarNotificacion();
+        startStop();
 
+
+    }
+    private void startStop() {
+        if(timeRunning){
+            stopTimer();
+        }else {
+            startTimer();
+        }
+    }
+    private void startTimer() {
+        countDownTimer=new CountDownTimer(timeLeftinMs,1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftinMs=l;
+                updateTimer();
+                updateProgressBar();
+                Log.println(Log.ASSERT,"TIEMPO","FALTA"+l);
+                if(l<=800 && !relaxTime){
+                    countdownText.setText("1:00");
+                    relaxTime=true;
+                    timeLeftinMs=60000;
+                    startTimer();
+
+                }
+
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+        countdownBtn.setText("PAUSE");
+        timeRunning = true;
+    }
+    private void updateProgressBar() {
+        int percentage= (int )((timeLeftinMs*100)/time);
+        progressBar.setProgress(percentage);
 
 
     }
 
+    private void updateTimer() {
+        int minutes=(int) timeLeftinMs / 60000;
+        int seconds=(int) timeLeftinMs % 60000 / 1000;
 
+        String timeLeftText;
+
+        timeLeftText=""+minutes;
+        timeLeftText+=":";
+        if(seconds<10) timeLeftText +="0";
+        timeLeftText +=seconds;
+
+        countdownText.setText(timeLeftText);
+
+
+    }
+    private void stopTimer() {
+        countDownTimer.cancel();
+        countdownBtn.setText("START");
+        timeRunning=false;
+    }
 }
