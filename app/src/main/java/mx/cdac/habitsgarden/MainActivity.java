@@ -71,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnLogros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),Recompensas.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

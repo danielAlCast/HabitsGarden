@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/hojahum"
         android:title="@string/app_name"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/insert"
         android:title="Agregar Actividad"
