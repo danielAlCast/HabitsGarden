@@ -47,6 +47,7 @@ public class PomodoroActi extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent= new Intent(getApplicationContext(),PromoActivity.class);
                 startActivity(intent);
+                stopTimer();
 
             }
         });
@@ -100,6 +101,8 @@ public class PomodoroActi extends AppCompatActivity {
             }
         }.start();
         timeRunning = true;
+        cancelBtn.setEnabled(true);
+        countdownBtn.setEnabled(false);
     }
     private void updateProgressBar() {
         int percentage= (int )((timeLeftinMs*100)/time);
@@ -125,10 +128,11 @@ public class PomodoroActi extends AppCompatActivity {
     }
     private void stopTimer() {
         countDownTimer.cancel();
-        countdownBtn.setText("START");
-        cancelBtn.setEnabled(true);
         timeRunning=false;
-
-
+        progressBar.setProgress(100);
+        timeLeftinMs=time;
+        countdownText.setText("1:00");
+        countdownBtn.setEnabled(true);
+        cancelBtn.setEnabled(false);
     }
 }
