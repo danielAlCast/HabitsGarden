@@ -85,7 +85,7 @@ public class PomodoroActi extends AppCompatActivity {
 
             }
         }.start();
-        countdownBtn.setText("PAUSE");
+        countdownBtn.setText("CANCELAR");
         timeRunning = true;
     }
     private void updateProgressBar() {
@@ -114,5 +114,8 @@ public class PomodoroActi extends AppCompatActivity {
         countDownTimer.cancel();
         countdownBtn.setText("START");
         timeRunning=false;
+        Intent intent= new Intent(getApplicationContext(),PromoActivity.class);
+        startActivity(intent);
+
     }
 }
