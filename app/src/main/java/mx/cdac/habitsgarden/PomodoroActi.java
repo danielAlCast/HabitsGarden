@@ -15,6 +15,7 @@ public class PomodoroActi extends AppCompatActivity {
 
     private TextView countdownText;
     private Button countdownBtn;
+    private Button cancelBtn;
     private ProgressBar progressBar;
 
 
@@ -28,6 +29,7 @@ public class PomodoroActi extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,19 @@ public class PomodoroActi extends AppCompatActivity {
         countdownBtn= findViewById(R.id.buttonComenzarPomodoro);
         progressBar=findViewById(R.id.progressBar);
         progressBar.setProgress(100);
+
+        cancelBtn=findViewById(R.id.cancel_button);
+        cancelBtn.setEnabled(false);
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getApplicationContext(),PromoActivity.class);
+                startActivity(intent);
+                stopTimer();
+
+            }
+        });
     }
 
     public void ComenzarPomodoro(View view) {
@@ -85,8 +100,9 @@ public class PomodoroActi extends AppCompatActivity {
 
             }
         }.start();
-        countdownBtn.setText("PAUSE");
         timeRunning = true;
+        cancelBtn.setEnabled(true);
+        countdownBtn.setEnabled(false);
     }
     private void updateProgressBar() {
         int percentage= (int )((timeLeftinMs*100)/time);
@@ -112,7 +128,11 @@ public class PomodoroActi extends AppCompatActivity {
     }
     private void stopTimer() {
         countDownTimer.cancel();
-        countdownBtn.setText("START");
         timeRunning=false;
+        progressBar.setProgress(100);
+        timeLeftinMs=time;
+        countdownText.setText("1:00");
+        countdownBtn.setEnabled(true);
+        cancelBtn.setEnabled(false);
     }
 }
