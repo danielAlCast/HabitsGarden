@@ -37,6 +37,8 @@
         <activity android:name=".InsertActividad" />
         <activity android:name=".consultar" />
         <activity android:name=".PomodoroActi" />
+        <activity android:name=".PromoActivity"
+            android:theme="@style/PopMe"/>
 
         <service android:name=".Servicio" />
         <service android:name=".ServicioP" />
