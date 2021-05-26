@@ -10,10 +10,25 @@
         android:id="@+id/RosasRecompensas"
         android:layout_width="101dp"
         android:layout_height="100dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginLeft="152dp"
+        android:layout_marginTop="104dp"
+        android:contentDescription="@string/bt_Rosas"
+        android:src="@mipmap/gg_rosas_icons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/ic_action_pomodoroimages" />
+        tools:srcCompat="@mipmap/gg_rosas_icons_foreground" />
+
+    <ImageButton
+        android:id="@+id/SuculentasRecompensas"
+        android:layout_width="93dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="159dp"
+        android:layout_marginLeft="159dp"
+        android:layout_marginTop="88dp"
+        android:contentDescription="@string/bt_Rosas"
+        android:src="@mipmap/gg_suculentas_icons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RosasRecompensas"
+        tools:srcCompat="@mipmap/gg_suculentas_icons" />
 </androidx.constraintlayout.widget.ConstraintLayout>
