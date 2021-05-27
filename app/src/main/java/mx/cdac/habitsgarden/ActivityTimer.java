@@ -3,15 +3,17 @@ package mx.cdac.habitsgarden;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PomodoroActi extends AppCompatActivity {
+public class ActivityTimer extends AppCompatActivity {
 
     private TextView countdownText;
     private Button countdownBtn;
@@ -20,28 +22,37 @@ public class PomodoroActi extends AppCompatActivity {
 
 
     private CountDownTimer countDownTimer;
-    private long timeLeftinMs=60000;//25 minutos
+
     private boolean timeRunning;
-    private long time=timeLeftinMs;
+
+    private String TIEMPO;
+    private long timeLeftinMs;//25 minutos
+    private long time;
 
 
-    private boolean relaxTime=false;
 
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Intent intent;
-
+       // Intent intent=;
+        //onStartCommand(intent);
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        int duracion =Integer.valueOf(intent.getStringExtra("DURACION"));
+
+        timeLeftinMs=(duracion*60)*1000;
+        time=timeLeftinMs;
+
         setContentView(R.layout.activity_pomodoro);
         countdownText = findViewById(R.id.countdown_text);
+        countdownText.setText(Integer.toString(duracion)+":00");
         countdownBtn= findViewById(R.id.buttonComenzarPomodoro);
         progressBar=findViewById(R.id.progressBar);
         progressBar.setProgress(100);
 
-       /* cancelBtn=findViewById(R.id.cancel_button);
+        cancelBtn=findViewById(R.id.cancel_button);
         cancelBtn.setEnabled(false);
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -50,30 +61,19 @@ public class PomodoroActi extends AppCompatActivity {
                 Intent intent= new Intent(getApplicationContext(),PromoActivity.class);
                 startActivity(intent);
                 stopTimer();
-                //detenerPomodoro();
 
             }
-        });*/
+        });
+        Log.println(Log.ASSERT,"MESSAGE2","timeleftinMS"+timeLeftinMs);
     }
 
-    public void detenerPomodoro(View view)
-    {
-        Intent intent = null;
-        Intent intent1=null;
-        Stop();
-        Log.println(Log.ASSERT,"MESSAGE","Pos le diste click a detener el pomodoro ");
-        intent = new Intent(this, ServicioP.class);
-        stopService(intent);
-        intent1=new Intent(this,PromoActivity.class);
-        startActivity(intent1);
 
-    }
 
     public void ComenzarPomodoro(View view) {
         Intent intent = null;
 
         intent = new Intent(this, ServicioP.class);
-        intent.putExtra("DURACION", "60");
+        intent.putExtra("DURACION", "20");
         intent.putExtra("ACTIVITY", "TRABAJO");
         startService(intent);
         intent.putExtra("DURACION", "5");
@@ -81,14 +81,12 @@ public class PomodoroActi extends AppCompatActivity {
         startService(intent);
         Log.println(Log.ASSERT,"MESSAGE","Pos le diste click al pomodoro");
 
+
         // mostrarNotificacion();
         startStop();
 
 
-    }
 
-    private void Stop() {
-        stopTimer();
     }
     private void startStop() {
         if(timeRunning){
@@ -105,13 +103,6 @@ public class PomodoroActi extends AppCompatActivity {
                 updateTimer();
                 updateProgressBar();
                 Log.println(Log.ASSERT,"TIEMPO","FALTA"+l);
-                if(l<=800 && !relaxTime){
-                    countdownText.setText("1:00");
-                    relaxTime=true;
-                    timeLeftinMs=60000;
-                    startTimer();
-
-                }
 
             }
 
@@ -121,11 +112,13 @@ public class PomodoroActi extends AppCompatActivity {
             }
         }.start();
         timeRunning = true;
-        // cancelBtn.setEnabled(true);
+        cancelBtn.setEnabled(true);
         countdownBtn.setEnabled(false);
     }
     private void updateProgressBar() {
+        Log.println(Log.ASSERT,"MESSAGE2","ms : "+time);
         int percentage= (int )((timeLeftinMs*100)/time);
+
         progressBar.setProgress(percentage);
 
 
@@ -151,8 +144,10 @@ public class PomodoroActi extends AppCompatActivity {
         timeRunning=false;
         progressBar.setProgress(100);
         timeLeftinMs=time;
-        countdownText.setText("1:00");
+        //countdownText.setText("1:00");
         countdownBtn.setEnabled(true);
-//        cancelBtn.setEnabled(false);
+        cancelBtn.setEnabled(false);
     }
 }
+
+

@@ -43,6 +43,7 @@
         <service android:name=".Servicio" />
         <service android:name=".ServicioP" />
         <service android:name=".ServicioIntent" />
+        <activity android:name=".ActivityTimer"/>
     </application>
 
 </manifest>

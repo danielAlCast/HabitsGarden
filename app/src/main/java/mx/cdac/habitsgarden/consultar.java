@@ -162,13 +162,17 @@ class actividadAdapter extends RecyclerView.Adapter<mx.cdac.habitsgarden.activid
 
         holder.boton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 Log.println(Log.ASSERT,"MESSAGE","Apretaste el boton de : "+actividadItem.nombre);
-                Intent intent = new Intent(context,Servicio.class);
-                intent.putExtra("DURACION", ""+actividadItem.tiempo);
-                intent.putExtra("ACTIVITY", ""+actividadItem.nombre);
-                context.startService(intent);
+                //Intent intent = new Intent(context,Servicio.class);
+                //intent.putExtra("DURACION", ""+actividadItem.tiempo);
+                //intent.putExtra("ACTIVITY", ""+actividadItem.nombre);
+                //context.startService(intent);
 
+                Intent intent1=new Intent(context, ActivityTimer.class);
+                intent1.putExtra("DURACION",""+actividadItem.tiempo);
+                context.startActivity(intent1);
             }
         });
 
