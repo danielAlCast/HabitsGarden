@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -14,6 +15,7 @@ import android.os.Message;
 import android.os.Process;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -22,6 +24,7 @@ public class ServicioP extends Service {
     private ServiceHandler serviceHandler;
     private Context context;
     private String TIEMPO;
+    private String TIM;
     private String NOMBRE;
     private int cont=0;
 
@@ -62,8 +65,17 @@ public class ServicioP extends Service {
         if (NOMBRE == "DESCANSO")
             cont =1;
 
+        int time  =  Integer.parseInt(TIEMPO);
+        if (time==5)
+            time=5;
+        else if (time==60)
+            time = time / 60;
+        else if (time>61)
+            time = time /60000;
 
-        Toast.makeText(this, "Servicio Iniciado cuenta " +TIEMPO+" segundos ", Toast.LENGTH_SHORT).show();
+        TIM  = String.valueOf(time);
+
+        Toast.makeText(this, "Pomodoro Iniciado "+TIM +" minutos ", Toast.LENGTH_SHORT).show();
 
         //Toast.makeText(this, "Servicio Iniciado cuenta " , Toast.LENGTH_SHORT).show();
 
@@ -87,6 +99,7 @@ public class ServicioP extends Service {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void notificacionToast()
     {
         try {
@@ -122,8 +135,19 @@ public class ServicioP extends Service {
 
         try {
 
+            int  MAX =  Integer.parseInt(TIEMPO);;
 
-            int MAX = Integer.parseInt(TIEMPO);
+            int time  =  Integer.parseInt(TIEMPO);
+
+            if (time==5)
+                MAX = Integer.parseInt(TIEMPO);
+
+            else if (time==60)
+                MAX = Integer.parseInt(TIEMPO);
+            else if (time>61)
+                MAX = Integer.parseInt(TIM);
+
+
             int MIN = 0;
 
             Notification.Builder builder = new Notification.Builder(context, "CANAL_MIO")

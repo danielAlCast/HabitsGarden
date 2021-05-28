@@ -28,22 +28,23 @@ public class ActivityTimer extends AppCompatActivity {
     private String TIEMPO;
     private long timeLeftinMs;//25 minutos
     private long time;
-
-
-
-
+    private int duracion;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       // Intent intent=;
+        // Intent intent=;
         //onStartCommand(intent);
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        int duracion =Integer.valueOf(intent.getStringExtra("DURACION"));
+        duracion =Integer.valueOf(intent.getStringExtra("DURACION"));
+
 
         timeLeftinMs=(duracion*60)*1000;
+
+        Log.println(Log.ASSERT,"MESSAGE","Duracion = "+ timeLeftinMs);
         time=timeLeftinMs;
+
 
         setContentView(R.layout.activity_pomodoro);
         countdownText = findViewById(R.id.countdown_text);
@@ -51,7 +52,7 @@ public class ActivityTimer extends AppCompatActivity {
         countdownBtn= findViewById(R.id.buttonComenzarPomodoro);
         progressBar=findViewById(R.id.progressBar);
         progressBar.setProgress(100);
-
+        /*
         cancelBtn=findViewById(R.id.cancel_button);
         cancelBtn.setEnabled(false);
 
@@ -64,7 +65,7 @@ public class ActivityTimer extends AppCompatActivity {
 
             }
         });
-        Log.println(Log.ASSERT,"MESSAGE2","timeleftinMS"+timeLeftinMs);
+        Log.println(Log.ASSERT,"MESSAGE2","timeleftinMS"+timeLeftinMs);*/
     }
 
 
@@ -72,8 +73,8 @@ public class ActivityTimer extends AppCompatActivity {
     public void ComenzarPomodoro(View view) {
         Intent intent = null;
 
-        intent = new Intent(this, ServicioP.class);
-        intent.putExtra("DURACION", "20");
+        intent = new Intent(this, Servicio.class);
+        intent.putExtra("DURACION", ""+timeLeftinMs);
         intent.putExtra("ACTIVITY", "TRABAJO");
         startService(intent);
         intent.putExtra("DURACION", "5");
@@ -85,9 +86,26 @@ public class ActivityTimer extends AppCompatActivity {
         // mostrarNotificacion();
         startStop();
 
+    }
 
+
+    public void detenerPomodoro(View view)
+    {
+        Intent intent = null;
+        Intent intent1=null;
+        Stop();
+        Log.println(Log.ASSERT,"MESSAGE","Pos le diste click a detener el pomodoro ");
+        intent = new Intent(this, Servicio.class);
+        stopService(intent);
+        intent1=new Intent(this,PromoActivity.class);
+        startActivity(intent1);
 
     }
+
+    private void Stop() {
+        stopTimer();
+    }
+
     private void startStop() {
         if(timeRunning){
             stopTimer();
@@ -112,7 +130,7 @@ public class ActivityTimer extends AppCompatActivity {
             }
         }.start();
         timeRunning = true;
-        cancelBtn.setEnabled(true);
+        //cancelBtn.setEnabled(true);
         countdownBtn.setEnabled(false);
     }
     private void updateProgressBar() {
@@ -144,9 +162,10 @@ public class ActivityTimer extends AppCompatActivity {
         timeRunning=false;
         progressBar.setProgress(100);
         timeLeftinMs=time;
-        //countdownText.setText("1:00");
+        //int duracion =Integer.valueOf(intent.getStringExtra("DURACION"));
+        countdownText.setText(Integer.toString(duracion)+":00");
         countdownBtn.setEnabled(true);
-        cancelBtn.setEnabled(false);
+        // cancelBtn.setEnabled(false);
     }
 }
 
