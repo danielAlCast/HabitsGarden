@@ -52,20 +52,10 @@ public class ActivityTimer extends AppCompatActivity {
         countdownBtn= findViewById(R.id.buttonComenzarPomodoro);
         progressBar=findViewById(R.id.progressBar);
         progressBar.setProgress(100);
-        /*
+
         cancelBtn=findViewById(R.id.cancel_button);
         cancelBtn.setEnabled(false);
 
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),PromoActivity.class);
-                startActivity(intent);
-                stopTimer();
-
-            }
-        });
-        Log.println(Log.ASSERT,"MESSAGE2","timeleftinMS"+timeLeftinMs);*/
     }
 
 
@@ -76,9 +66,6 @@ public class ActivityTimer extends AppCompatActivity {
         intent = new Intent(this, Servicio.class);
         intent.putExtra("DURACION", ""+timeLeftinMs);
         intent.putExtra("ACTIVITY", "TRABAJO");
-        startService(intent);
-        intent.putExtra("DURACION", "5");
-        intent.putExtra("ACTIVITY", "DESCANSO");
         startService(intent);
         Log.println(Log.ASSERT,"MESSAGE","Pos le diste click al pomodoro");
 
@@ -120,7 +107,7 @@ public class ActivityTimer extends AppCompatActivity {
                 timeLeftinMs=l;
                 updateTimer();
                 updateProgressBar();
-                Log.println(Log.ASSERT,"TIEMPO","FALTA"+l);
+                cancelBtn.setEnabled(true);
 
             }
 
@@ -165,6 +152,7 @@ public class ActivityTimer extends AppCompatActivity {
         //int duracion =Integer.valueOf(intent.getStringExtra("DURACION"));
         countdownText.setText(Integer.toString(duracion)+":00");
         countdownBtn.setEnabled(true);
+        cancelBtn.setEnabled(false);
         // cancelBtn.setEnabled(false);
     }
 }

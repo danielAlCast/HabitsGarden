@@ -23,7 +23,7 @@ public class PomodoroActi extends AppCompatActivity {
 
 
     private CountDownTimer countDownTimer;
-    private long timeLeftinMs=60000;//25 minutos
+    private long timeLeftinMs=1500*1000;//25 minutos
     private boolean timeRunning;
     private long time=timeLeftinMs;
 
@@ -47,19 +47,10 @@ public class PomodoroActi extends AppCompatActivity {
         progressBar.setProgress(100);
 
 
-       /* cancelBtn=findViewById(R.id.cancel_button);
+        cancelBtn=findViewById(R.id.cancel_button);
         cancelBtn.setEnabled(false);
 
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),PromoActivity.class);
-                startActivity(intent);
-                stopTimer();
-                //detenerPomodoro();
 
-            }
-        });*/
     }
 
     public void btninfoPomodoro(View view){
@@ -85,10 +76,10 @@ public class PomodoroActi extends AppCompatActivity {
         Intent intent = null;
 
         intent = new Intent(this, ServicioP.class);
-        intent.putExtra("DURACION", "60");
+        intent.putExtra("DURACION", "1500");
         intent.putExtra("ACTIVITY", "TRABAJO");
         startService(intent);
-        intent.putExtra("DURACION", "5");
+        intent.putExtra("DURACION", "300");
         intent.putExtra("ACTIVITY", "DESCANSO");
         startService(intent);
         Log.println(Log.ASSERT,"MESSAGE","Pos le diste click al pomodoro");
@@ -116,13 +107,13 @@ public class PomodoroActi extends AppCompatActivity {
                 timeLeftinMs=l;
                 updateTimer();
                 updateProgressBar();
+                cancelBtn.setEnabled(true);
                 Log.println(Log.ASSERT,"TIEMPO","FALTA"+l);
                 if(l<=800 && !relaxTime){
                     countdownText.setText("1:00");
                     relaxTime=true;
                     timeLeftinMs=60000;
                     startTimer();
-
                 }
 
             }
@@ -163,8 +154,9 @@ public class PomodoroActi extends AppCompatActivity {
         timeRunning=false;
         progressBar.setProgress(100);
         timeLeftinMs=time;
-        countdownText.setText("1:00");
+        countdownText.setText("25:00");
         countdownBtn.setEnabled(true);
-//        cancelBtn.setEnabled(false);
+        cancelBtn.setEnabled(false);
+
     }
 }

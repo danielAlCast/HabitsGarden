@@ -66,9 +66,9 @@ public class ServicioP extends Service {
             cont =1;
 
         int time  =  Integer.parseInt(TIEMPO);
-        if (time==5)
-            time=5;
-        else if (time==60)
+        if (time==300)
+            time=300/60;
+        else if (time==1500)
             time = time / 60;
         else if (time>61)
             time = time /60000;
@@ -139,10 +139,10 @@ public class ServicioP extends Service {
 
             int time  =  Integer.parseInt(TIEMPO);
 
-            if (time==5)
+            if (time==300)
                 MAX = Integer.parseInt(TIEMPO);
 
-            else if (time==60)
+            else if (time==1500)
                 MAX = Integer.parseInt(TIEMPO);
             else if (time>61)
                 MAX = Integer.parseInt(TIM);
