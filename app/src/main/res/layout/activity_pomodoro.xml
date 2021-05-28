@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/informesPomodoro"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PomodoroActi"
 
 
-    ><![CDATA[
+    tools:context=".PomodoroActi"><![CDATA[
 
     app:layout_constraintVertical_bias="0.098" />
 
@@ -75,5 +75,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonComenzarPomodoro" />
+
+    <ImageButton
+        android:id="@+id/infoPomodoro"
+        android:layout_width="55dp"
+        android:layout_height="76dp"
+        android:background="@color/white"
+        android:onClick="btninfoPomodoro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/infobtns" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

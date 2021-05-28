@@ -6,12 +6,15 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PomodoroActi extends AppCompatActivity {
+
+
 
     private TextView countdownText;
     private Button countdownBtn;
@@ -34,12 +37,15 @@ public class PomodoroActi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent;
 
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pomodoro);
         countdownText = findViewById(R.id.countdown_text);
         countdownBtn= findViewById(R.id.buttonComenzarPomodoro);
         progressBar=findViewById(R.id.progressBar);
         progressBar.setProgress(100);
+
 
        /* cancelBtn=findViewById(R.id.cancel_button);
         cancelBtn.setEnabled(false);
@@ -54,6 +60,12 @@ public class PomodoroActi extends AppCompatActivity {
 
             }
         });*/
+    }
+
+    public void btninfoPomodoro(View view){
+        Intent intent= new Intent(getApplicationContext(),PopPomodorobtn.class);
+        startActivity(intent);
+
     }
 
     public void detenerPomodoro(View view)
