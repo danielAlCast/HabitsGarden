@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="mx.cdac.habitsgarden">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -28,8 +29,12 @@
             android:theme="@style/PopMe" />
         <activity android:name=".CalendarioActivity" />
 
-        <activity android:name=".PopActivityRosas"
-            android:theme="@style/PopMe"/>
+        <activity
+            android:name=".PopActivityRosas"
+            android:theme="@style/PopMe" />
+        <activity
+            android:name=".PopPomodorobtn"
+            android:theme="@style/PopMe" />
 
         <activity
             android:name=".Habitos"
@@ -37,13 +42,15 @@
         <activity android:name=".InsertActividad" />
         <activity android:name=".consultar" />
         <activity android:name=".PomodoroActi" />
-        <activity android:name=".PromoActivity"
-            android:theme="@style/PopMe"/>
+        <activity
+            android:name=".PromoActivity"
+            android:theme="@style/PopMe" />
 
         <service android:name=".Servicio" />
         <service android:name=".ServicioP" />
         <service android:name=".ServicioIntent" />
-        <activity android:name=".ActivityTimer"/>
+
+        <activity android:name=".ActivityTimer" />
     </application>
 
 </manifest>
