@@ -24,6 +24,7 @@ public class Servicio extends Service {
     private ServiceHandler serviceHandler;
     private Context context;
     private String TIEMPO;
+    private String TIM;
     private String NOMBRE;
     private int cont=0;
 
@@ -63,10 +64,16 @@ public class Servicio extends Service {
         NOMBRE = intent.getStringExtra("ACTIVITY");
 
         if (NOMBRE == "DESCANSO")
-                cont =1;
+            cont =1;
 
+        int time = Integer.parseInt(TIEMPO);
 
-        Toast.makeText(this, "Servicio Iniciado cuenta " +TIEMPO+" segundos ", Toast.LENGTH_SHORT).show();
+        time = time / 60000;
+        TIM = String.valueOf(time);
+
+        TIEMPO = String.valueOf(time);
+
+        Toast.makeText(this, "Servicio Iniciado cuenta " +TIM+" Minutos ", Toast.LENGTH_SHORT).show();
 
         //Toast.makeText(this, "Servicio Iniciado cuenta " , Toast.LENGTH_SHORT).show();
 

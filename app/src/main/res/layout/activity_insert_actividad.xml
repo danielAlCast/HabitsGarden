@@ -14,7 +14,7 @@
         android:layout_marginBottom="48dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Tiempo"
+        android:hint="Duracion"
         app:layout_constraintBottom_toTopOf="@+id/btnActividad"
         app:layout_constraintEnd_toEndOf="@+id/txt1"
         app:layout_constraintHorizontal_bias="0.0"
@@ -28,8 +28,8 @@
         android:layout_marginTop="120dp"
         android:layout_marginBottom="14dp"
         android:ems="10"
+        android:hint="Nombre"
         android:inputType="textPersonName"
-        android:text="Nombre"
         app:layout_constraintBottom_toTopOf="@+id/txt2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -41,11 +41,15 @@
         android:id="@+id/btnActividad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginRight="101dp"
         android:layout_marginBottom="50dp"
         android:onClick="insertActividad"
         android:text="Inserta Actividad"
+
         app:layout_constraintBottom_toTopOf="@+id/btnConsultar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txt2"
         app:layout_constraintTop_toBottomOf="@+id/txt2" />
 
@@ -64,9 +68,9 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="174dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="125dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="58dp"
         android:text="¡Crea Tu Actividad!"
         android:textAlignment="center"
@@ -75,6 +79,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/txt2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
