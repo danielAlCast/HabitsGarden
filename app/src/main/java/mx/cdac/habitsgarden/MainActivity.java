@@ -17,9 +17,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton btnPomodoro;
     ImageButton btnLogros;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
